@@ -1,0 +1,27 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ feat/github-actions, dev ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull Repository
+        uses: actions/checkout@v3
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2.10.0
+        with:
+          arguments: build
