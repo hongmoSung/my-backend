@@ -16,6 +16,14 @@ jobs:
       - name: Pull Repository
         uses: actions/checkout@v3
 
+      - name: Checkout private tools
+        uses: actions/checkout@v3
+        with:
+          repository: hongmoSung/properties
+          token: ${{ secrets.ACTION_TOKEN }}
+          path: src/main/resources/properties
+          submodules: true
+
       - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
