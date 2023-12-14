@@ -1,4 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybackenddb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+
 management:
   endpoint:
     health:
       show-details: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import: classpath:/properties/application-dev.yml
