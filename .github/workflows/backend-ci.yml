@@ -2,7 +2,7 @@ name: Backend CI
 
 on:
   push:
-    branches: [ dev, feat/db ]
+    branches: [ dev ]
 
 permissions:
   contents: read
