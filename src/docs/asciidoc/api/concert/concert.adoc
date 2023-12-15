@@ -1,0 +1,20 @@
+[[get-token]]
+=== 예약 가능 날짜
+
+==== HTTP Request
+
+include::{snippets}/available-dates/http-request.adoc[]
+
+[[get-remain-seats]]
+=== 좌석 조회
+
+==== HTTP Request
+
+include::{snippets}/get-remain-seats/http-request.adoc[]
+
+[[do-reserve]]
+=== 좌석 예약 요청
+
+==== HTTP Request
+
+include::{snippets}/do reserve/http-request.adoc[]

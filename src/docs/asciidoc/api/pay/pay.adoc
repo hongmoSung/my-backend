@@ -1,0 +1,20 @@
+[[get-pays-balance]]
+=== 잔액 조회
+
+==== HTTP Request
+
+include::{snippets}/get-pays-balance/http-request.adoc[]
+
+[[post-pays-charge]]
+=== 잔액 충전
+
+==== HTTP Request
+
+include::{snippets}/post-pays-charge/http-request.adoc[]
+
+[[post-pays-payment]]
+=== 결제
+
+==== HTTP Request
+
+include::{snippets}/post-pays-payment/http-request.adoc[]
