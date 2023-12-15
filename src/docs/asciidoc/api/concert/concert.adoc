@@ -1,4 +1,4 @@
-[[get-token]]
+[[available-dates]]
 === 예약 가능 날짜
 
 ==== HTTP Request
