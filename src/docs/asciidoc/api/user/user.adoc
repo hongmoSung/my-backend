@@ -1,0 +1,6 @@
+[[get-token]]
+=== 유저 토큰 발급
+
+==== HTTP Request
+
+include::{snippets}/get-user-token/http-request.adoc[]
