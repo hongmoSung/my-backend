@@ -1,0 +1,3 @@
+GET localhost:8080/api/v1/pays/balance
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI1M2NjODdhZS1lMzk3LTQ0NjEtOGNmZC1jNzA5MjQ3NDYwMmEiLCJlbWFpbCI6ImFAYS5jb20iLCJudW1iZXIiOjEsImV4cGlyZUF0IjoxNzAzMjY3ODU2fQ.4ij0ZTz5KkHMyYIwIZHbK0f2Aaur-CFcIluS75X4i6s

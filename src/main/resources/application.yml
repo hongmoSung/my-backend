@@ -5,10 +5,30 @@ spring:
     username: root
     password: 1234
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+
 management:
   endpoint:
     health:
       show-details: always
+
+jwt:
+  secret-key: Thesailingplustaskisverydifficult
+
+logging.level:
+  com.my: info
+  org.springframework.web: debug
+  org.hibernate.SQL: debug
+  org.hibernate.type.descriptor: trace
 
 ---
 spring:

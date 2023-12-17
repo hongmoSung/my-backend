@@ -1,7 +1,7 @@
 ifndef::snippets[]
 :snippets: ../../build/generated-snippets
 endif::[]
-= My-backend REST API 명세서
+= My-backend REST API 명세서 ⚓️
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -9,6 +9,6 @@ endif::[]
 :toclevels: 2
 :sectlinks:
 
-include::api/concert/concert.adoc[]
-include::api/pay/pay.adoc[]
 include::api/user/user.adoc[]
+include::api/pay/pay.adoc[]
+include::api/concert/concert.adoc[]
