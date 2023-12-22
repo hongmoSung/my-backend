@@ -4,3 +4,11 @@
 ==== HTTP Request
 
 include::{snippets}/get-user-token/http-request.adoc[]
+
+==== HTTP Request Body
+
+include::{snippets}/get-user-token/request-body.adoc[]
+
+==== HTTP Response Body
+
+include::{snippets}/get-user-token/response-body.adoc[]
