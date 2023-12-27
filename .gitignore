@@ -38,3 +38,6 @@ out/
 
 ### Mac os ###
 .DS_Store
+
+### Qclass
+src/main/generated

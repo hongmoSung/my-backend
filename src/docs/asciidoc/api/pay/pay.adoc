@@ -1,45 +1,14 @@
-[[get-pays-balance]]
+[[get-balance]]
 === 잔액 조회
 
 ==== HTTP Request
 
-include::{snippets}/get-pays-balance/http-request.adoc[]
+include::{snippets}/get-balance/http-request.adoc[]
 
 ==== Http Response
 
-include::{snippets}/get-pays-balance/http-response.adoc[]
+include::{snippets}/get-balance/http-response.adoc[]
 
-==== Http Response Code
+==== Http Response Fields
 
-include::{snippets}/get-pays-balance/response-fields.adoc[]
-
-
-[[post-pays-charge]]
-=== 잔액 충전
-
-==== HTTP Request
-
-include::{snippets}/post-pays-charge/http-request.adoc[]
-
-==== Request Body
-
-include::{snippets}/post-pays-charge/request-body.adoc[]
-
-==== Http Response
-
-include::{snippets}/post-pays-charge/http-response.adoc[]
-
-[[post-pays-payment]]
-=== 결제
-
-==== HTTP Request
-
-include::{snippets}/post-pays-payment/http-request.adoc[]
-
-==== Request Body
-
-include::{snippets}/post-pays-payment/request-body.adoc[]
-
-==== Http Response
-
-include::{snippets}/post-pays-payment/http-response.adoc[]
+include::{snippets}/get-balance/response-fields.adoc[]
