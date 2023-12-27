@@ -2,7 +2,7 @@ name: Backend CI
 
 on:
   push:
-    branches: [ dev, api-spec ]
+    branches: [ dev ]
 
 permissions:
   contents: read
@@ -33,6 +33,7 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2.10.0
         with:
+          cache-disabled: true
           arguments: build
 
   deployment:
