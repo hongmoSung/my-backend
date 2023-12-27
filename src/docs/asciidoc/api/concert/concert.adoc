@@ -5,15 +5,19 @@
 
 include::{snippets}/create-concert/http-request.adoc[]
 
-==== HTTP Request Body
+==== Request Body
 
 include::{snippets}/create-concert/request-body.adoc[]
 
-==== HTTP Response Body
+include::{snippets}/create-concert/request-fields.adoc[]
+
+==== Response Body
 
 include::{snippets}/create-concert/http-response.adoc[]
 
+
 [[available-dates]]
+
 === 예약 가능 날짜
 
 ==== HTTP Request
@@ -24,9 +28,11 @@ include::{snippets}/available-dates/http-request.adoc[]
 
 include::{snippets}/available-dates/path-parameters.adoc[]
 
-==== HTTP Response Body
+==== Response Body
 
 include::{snippets}/available-dates/http-response.adoc[]
+
+include::{snippets}/available-dates/response-fields.adoc[]
 
 [[get-remain-seats]]
 === 좌석 조회
@@ -43,17 +49,4 @@ include::{snippets}/get-remain-seats/path-parameters.adoc[]
 
 include::{snippets}/get-remain-seats/http-response.adoc[]
 
-[[get-remain-seats]]
-=== 좌석 예약 요청
-
-==== HTTP Request
-
-include::{snippets}/get-remain-seats/http-request.adoc[]
-
-==== HTTP Request Body
-
-include::{snippets}/get-remain-seats/path-parameters.adoc[]
-
-==== HTTP Response Body
-
-include::{snippets}/get-remain-seats/http-response.adoc[]
+include::{snippets}/get-remain-seats/response-fields.adoc[]

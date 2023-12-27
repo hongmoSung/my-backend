@@ -21,13 +21,14 @@ public class UserRepoImpl implements UserRepo {
         UserEntity userEntity = userJpaRepo.findByEmail(email)
             .orElseGet(() -> new UserEntity(email));
 
-        if (userEntity.isWalletEmpty()) {
-            PayEntity wallet = new PayEntity(userEntity);
-            userEntity.addWallet(wallet);
+        if (userEntity.isPayEmpty()) {
+            PayEntity payEntity = new PayEntity(userEntity);
+            userEntity.addPay(payEntity);
         }
 
         userJpaRepo.save(userEntity);
 
         return new User(userEntity.getUserId().toString(), userEntity.getEmail());
     }
+
 }

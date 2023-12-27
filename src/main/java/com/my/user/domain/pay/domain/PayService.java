@@ -1,10 +1,11 @@
 package com.my.user.domain.pay.domain;
 
-import com.my.user.domain.pay.api.dto.PaymentDto;
-import java.math.BigInteger;
+import com.my.concert.domain.booking.domain.Booking;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigInteger;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class PayService {
     }
 
     @Transactional
-    public void pay(String userUuid) {
-        payRepo.payMoney(userUuid);
+    public void pay(String userUuid, Booking booking) {
+        payRepo.payMoney(userUuid, booking);
     }
 }

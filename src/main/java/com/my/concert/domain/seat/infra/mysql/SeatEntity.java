@@ -30,6 +30,8 @@ public class SeatEntity {
 
     private boolean isReserved = false;
 
+    private int price = 5000;
+
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(
             name = "concertId",
