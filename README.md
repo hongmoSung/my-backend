@@ -2,7 +2,12 @@
 
 ### Api Docs
 
-[Api 명세서 링크](http://my-lb-1257057151.ap-northeast-2.elb.amazonaws.com:8080/docs/index.html)
+* [Api 명세서 링크](http://my-lb-1257057151.ap-northeast-2.elb.amazonaws.com:8080/docs/index.html)
+
+### ERD
+
+* [ERD 링크](https://dbdiagram.io/d/my-backend-657d7dd856d8064ca0245e8c)
+* ![ERD](./images/my-backend-erd.png){: width=40% height=40%}
 
 ### DB
 
