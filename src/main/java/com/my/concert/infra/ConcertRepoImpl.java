@@ -2,7 +2,6 @@ package com.my.concert.infra;
 
 import com.my.concert.domain.Concert;
 import com.my.concert.domain.ConcertRepo;
-import com.my.concert.domain.booking.infra.BookingEntity;
 import com.my.concert.domain.seat.infra.mysql.SeatEntity;
 import com.my.concert.infra.mysql.ConcertEntity;
 import com.my.concert.infra.mysql.ConcertJpaRepo;
@@ -36,16 +35,7 @@ public class ConcertRepoImpl implements ConcertRepo {
             .map(seat -> seat.toEntity(concertEntity))
             .toList();
 
-        List<BookingEntity> bookingEntities = seatEntities
-            .stream()
-            .map(seatEntity -> BookingEntity.builder()
-                .date(seatEntity.getDate())
-                .concert(concertEntity)
-                .seat(seatEntity)
-                .build())
-            .toList();
-
-        concertEntity.addSeatsAndBookings(seatEntities, bookingEntities);
+        concertEntity.addSeats(seatEntities);
         concertJpaRepo.save(concertEntity);
     }
 }

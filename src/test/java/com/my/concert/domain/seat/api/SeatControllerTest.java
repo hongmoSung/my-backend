@@ -34,11 +34,11 @@ class SeatControllerTest extends RestDocTestSupport {
         List<ResRemainSeats> response = List.of(
             ResRemainSeats.builder()
                 .date(LocalDate.of(2021, 1, 1))
-                .count(1)
+                .count(1L)
                 .build(),
             ResRemainSeats.builder()
                 .date(LocalDate.of(2021, 1, 2))
-                .count(1)
+                .count(1L)
                 .build()
         );
 

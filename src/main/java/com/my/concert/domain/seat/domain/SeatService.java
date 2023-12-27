@@ -39,4 +39,8 @@ public class SeatService {
     public List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String date) {
         return seatRepo.getRemainSeatsByDate(concertId, date);
     }
+
+    public Seat getSeat(Long seatId) {
+        return seatRepo.getSeat(seatId);
+    }
 }

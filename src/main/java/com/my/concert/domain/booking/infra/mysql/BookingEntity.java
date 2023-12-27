@@ -1,7 +1,7 @@
-package com.my.concert.domain.booking.infra;
+package com.my.concert.domain.booking.infra.mysql;
 
-import com.my.concert.infra.mysql.ConcertEntity;
 import com.my.concert.domain.seat.infra.mysql.SeatEntity;
+import com.my.user.infra.UserEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "Booking")
+@Entity(name = "booking")
 public class BookingEntity {
 
     @Id
@@ -21,14 +21,16 @@ public class BookingEntity {
 
     private LocalDate date;
 
-    @ManyToOne
+    private boolean isPaid = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
-            name = "concertId",
+            name = "userId",
             foreignKey = @ForeignKey(name = "FK_Booking_Concert_Id")
     )
-    private ConcertEntity concert;
+    private UserEntity user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "seatId",
             foreignKey = @ForeignKey(name = "FK_Booking_Seat_Id")
@@ -36,13 +38,13 @@ public class BookingEntity {
     private SeatEntity seat;
 
     @Builder
-    public BookingEntity(LocalDate date, ConcertEntity concert, SeatEntity seat) {
+    public BookingEntity(LocalDate date, UserEntity user, SeatEntity seat) {
         this.date = date;
-        this.concert = concert;
+        this.user = user;
         this.seat = seat;
     }
 
-    public void addConcert(ConcertEntity concert) {
-        this.concert = concert;
+    public void paid() {
+        this.isPaid = true;
     }
 }

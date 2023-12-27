@@ -1,6 +1,8 @@
 package com.my.user.domain.pay.domain;
 
 import java.math.BigInteger;
+
+import com.my.concert.domain.booking.domain.Booking;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -10,5 +12,5 @@ public interface PayRepo {
 
     void rechargeMoney(String userUuid, BigInteger chargeAmount);
 
-    void payMoney(String userUuid);
+    void payMoney(String userUuid, Booking price);
 }

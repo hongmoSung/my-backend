@@ -2,7 +2,9 @@ package com.my.user.infra;
 
 import com.my.user.domain.pay.infra.mysql.PayEntity;
 import jakarta.persistence.*;
+
 import java.util.Optional;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,19 +31,23 @@ public class UserEntity {
 
     private String email;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private PayEntity wallet;
+    @OneToOne(
+            mappedBy = "user",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private PayEntity pay;
 
     @Builder
     public UserEntity(String email) {
         this.email = email;
     }
 
-    public void addWallet(PayEntity wallet) {
-        this.wallet = wallet;
+    public void addPay(PayEntity pay) {
+        this.pay = pay;
     }
 
-    public boolean isWalletEmpty() {
-        return Optional.ofNullable(this.wallet).isEmpty();
+    public boolean isPayEmpty() {
+        return Optional.ofNullable(this.pay).isEmpty();
     }
 }

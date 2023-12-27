@@ -5,10 +5,31 @@
 
 include::{snippets}/get-balance/http-request.adoc[]
 
-==== Http Response
+==== Response Body
 
 include::{snippets}/get-balance/http-response.adoc[]
 
-==== Http Response Fields
+==== Response Fields
 
 include::{snippets}/get-balance/response-fields.adoc[]
+
+
+[[balance-recharge]]
+
+=== 잔액 충전
+
+==== Http Request
+
+include::{snippets}/balance-recharge/http-request.adoc[]
+
+==== Request Body
+
+include::{snippets}/balance-recharge/request-body.adoc[]
+
+==== Request Fields
+
+include::{snippets}/balance-recharge/request-fields.adoc[]
+
+==== Response
+
+include::{snippets}/balance-recharge/http-response.adoc[]

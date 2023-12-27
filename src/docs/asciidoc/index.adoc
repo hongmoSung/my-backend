@@ -11,5 +11,5 @@ endif::[]
 :sectlinks:
 
 include::api/user/user.adoc[]
-include::api/pay/pay.adoc[]
 include::api/concert/concert.adoc[]
+include::api/pay/pay.adoc[]
