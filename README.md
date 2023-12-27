@@ -7,7 +7,7 @@
 ### ERD
 
 * [ERD 링크](https://dbdiagram.io/d/my-backend-657d7dd856d8064ca0245e8c)
-* ![ERD](./images/my-backend-erd.png){: width=40% height=40%}
+* ![ERD](./images/my-backend-erd.png){: width=400px height=400px }
 
 ### DB
 
