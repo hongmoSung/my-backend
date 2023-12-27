@@ -21,11 +21,4 @@ public class ConcertController {
         concertFacade.createThingsNeededForTheConcert(dto);
         return ResponseEntity.created(null).build();
     }
-
-//    @PostMapping("/booking")
-//    public ResponseEntity<Void> booking(@RequestBody ReqBookingDto reqBookingDto) {
-//        concertFacade.bookingConcert(reqBookingDto);
-//        return ResponseEntity.created(null).build();
-//    }
-
 }
