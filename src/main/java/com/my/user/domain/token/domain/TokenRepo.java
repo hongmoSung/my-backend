@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TokenRepo {
 
-    void saveToken(TokenEntity tokenEntity);
+	void saveToken(TokenEntity tokenEntity);
+
 }

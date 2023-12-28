@@ -12,19 +12,20 @@ import java.math.BigInteger;
 @Service
 public class PayService {
 
-    private final PayRepo payRepo;
+	private final PayRepo payRepo;
 
-    public BigInteger getBalanceByUserUuid(String uuid) {
-        return payRepo.getBalanceByUserUuid(uuid);
-    }
+	public BigInteger getBalanceByUserUuid(String uuid) {
+		return payRepo.getBalanceByUserUuid(uuid);
+	}
 
-    @Transactional
-    public void rechargeMoney(String userUuid, BigInteger chargeAmount) {
-        payRepo.rechargeMoney(userUuid, chargeAmount);
-    }
+	@Transactional
+	public void rechargeMoney(String userUuid, BigInteger chargeAmount) {
+		payRepo.rechargeMoney(userUuid, chargeAmount);
+	}
 
-    @Transactional
-    public void pay(String userUuid, Booking booking) {
-        payRepo.payMoney(userUuid, booking);
-    }
+	@Transactional
+	public void pay(String userUuid, Booking booking) {
+		payRepo.payMoney(userUuid, booking);
+	}
+
 }

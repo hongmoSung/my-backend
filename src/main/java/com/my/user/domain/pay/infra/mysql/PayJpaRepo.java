@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PayJpaRepo extends JpaRepository<PayEntity, Long> {
 
-    Optional<PayEntity> findByUserUserId(UUID userUUid);
+	Optional<PayEntity> findByUserUserId(UUID userUUid);
 
 }

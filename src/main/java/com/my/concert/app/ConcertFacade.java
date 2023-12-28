@@ -14,14 +14,15 @@ import java.util.List;
 @Service
 public class ConcertFacade {
 
-    private final ConcertService concertService;
-    private final SeatService seatService;
+	private final ConcertService concertService;
 
-    public void createThingsNeededForTheConcert(ReqCreateConcertDto dto) {
-        Concert concert = dto.toConcert();
-        List<Seat> seats = seatService.createSeatsByConcert(concert);
-        concert.setSeats(seats);
-        concertService.createConcert(concert);
-    }
+	private final SeatService seatService;
+
+	public void createThingsNeededForTheConcert(ReqCreateConcertDto dto) {
+		Concert concert = dto.toConcert();
+		List<Seat> seats = seatService.createSeatsByConcert(concert);
+		concert.setSeats(seats);
+		concertService.createConcert(concert);
+	}
 
 }

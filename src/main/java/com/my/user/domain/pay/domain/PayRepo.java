@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PayRepo {
 
-    BigInteger getBalanceByUserUuid(String userUuid);
+	BigInteger getBalanceByUserUuid(String userUuid);
 
-    void rechargeMoney(String userUuid, BigInteger chargeAmount);
+	void rechargeMoney(String userUuid, BigInteger chargeAmount);
 
-    void payMoney(String userUuid, Booking price);
+	void payMoney(String userUuid, Booking price);
+
 }

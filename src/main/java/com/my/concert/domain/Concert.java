@@ -13,32 +13,33 @@ import lombok.Setter;
 @Getter
 public class Concert {
 
-    private Long id;
-    private String name;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private int capacity = 50;
+	private Long id;
 
-    @Setter
-    private List<Seat> seats = new ArrayList<>();
+	private String name;
 
-    @Builder
-    public Concert(Long id, String name, LocalDate startDate, LocalDate endDate) {
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+	private LocalDate startDate;
 
-    public ConcertEntity toEntity() {
-        return ConcertEntity.builder()
-                .name(name)
-                .startDate(startDate)
-                .endDate(endDate)
-                .build();
-    }
+	private LocalDate endDate;
 
-    public int getConcertPeriodDays() {
-        return Period.between(startDate, endDate).getDays();
-    }
+	private int capacity = 50;
+
+	@Setter
+	private List<Seat> seats = new ArrayList<>();
+
+	@Builder
+	public Concert(Long id, String name, LocalDate startDate, LocalDate endDate) {
+		this.id = id;
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+	public ConcertEntity toEntity() {
+		return ConcertEntity.builder().name(name).startDate(startDate).endDate(endDate).build();
+	}
+
+	public int getConcertPeriodDays() {
+		return Period.between(startDate, endDate).getDays();
+	}
+
 }

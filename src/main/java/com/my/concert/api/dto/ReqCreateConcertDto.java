@@ -13,19 +13,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReqCreateConcertDto {
 
-    private String name;
+	private String name;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate startDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endDate;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate endDate;
 
-    public Concert toConcert() {
-        return Concert.builder()
-                .name(name)
-                .startDate(startDate)
-                .endDate(endDate)
-                .build();
-    }
+	public Concert toConcert() {
+		return Concert.builder().name(name).startDate(startDate).endDate(endDate).build();
+	}
+
 }

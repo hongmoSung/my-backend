@@ -16,33 +16,35 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PayRepoImpl implements PayRepo {
 
-    private final PayJpaRepo payJpaRepo;
-    private final BookingJpaRepo bookingJpaRepo;
+	private final PayJpaRepo payJpaRepo;
 
-    @Override
-    public BigInteger getBalanceByUserUuid(String userUuid) {
-        Optional<PayEntity> optionalPay = payJpaRepo.findByUserUserId(UUID.fromString(userUuid));
-        if (optionalPay.isEmpty()) {
-            return BigInteger.ZERO;
-        }
-        return optionalPay.get().getMoney();
-    }
+	private final BookingJpaRepo bookingJpaRepo;
 
-    @Override
-    public void rechargeMoney(String userUuid, BigInteger chargeAmount) {
-        PayEntity payEntity = payJpaRepo.findByUserUserId(UUID.fromString(userUuid))
-            .orElseThrow(() -> new RuntimeException("유저의 잔액조회에 실패하였습니다."));
-        payEntity.rechargeMoney(chargeAmount);
-    }
+	@Override
+	public BigInteger getBalanceByUserUuid(String userUuid) {
+		Optional<PayEntity> optionalPay = payJpaRepo.findByUserUserId(UUID.fromString(userUuid));
+		if (optionalPay.isEmpty()) {
+			return BigInteger.ZERO;
+		}
+		return optionalPay.get().getMoney();
+	}
 
-    @Override
-    public void payMoney(String userUuid, Booking booking) {
-        PayEntity payEntity = payJpaRepo.findByUserUserId(UUID.fromString(userUuid))
-                .orElseThrow(() -> new RuntimeException("유저의 잔액조회에 실패하였습니다."));
-        payEntity.payMoney(booking.getPrice());
+	@Override
+	public void rechargeMoney(String userUuid, BigInteger chargeAmount) {
+		PayEntity payEntity = payJpaRepo.findByUserUserId(UUID.fromString(userUuid))
+			.orElseThrow(() -> new RuntimeException("유저의 잔액조회에 실패하였습니다."));
+		payEntity.rechargeMoney(chargeAmount);
+	}
 
-        BookingEntity bookingEntity = bookingJpaRepo.findById(booking.getId())
-                .orElseThrow(() -> new RuntimeException("예약 정보 조회에 실패하였습니다."));
-        bookingEntity.paid();
-    }
+	@Override
+	public void payMoney(String userUuid, Booking booking) {
+		PayEntity payEntity = payJpaRepo.findByUserUserId(UUID.fromString(userUuid))
+			.orElseThrow(() -> new RuntimeException("유저의 잔액조회에 실패하였습니다."));
+		payEntity.payMoney(booking.getPrice());
+
+		BookingEntity bookingEntity = bookingJpaRepo.findById(booking.getId())
+			.orElseThrow(() -> new RuntimeException("예약 정보 조회에 실패하였습니다."));
+		bookingEntity.paid();
+	}
+
 }

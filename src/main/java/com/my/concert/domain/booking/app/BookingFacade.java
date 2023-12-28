@@ -13,19 +13,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingFacade {
 
-    private final TokenService tokenService;
-    private final SeatService seatService;
-    private final BookingService bookingService;
+	private final TokenService tokenService;
 
-    public void booking(String authorization, RequestBookingDto dto) {
-        if (authorization == null || !authorization.contains("Bearer ")) {
-            return;
-        }
-        Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
-        String userUuid = token.getUserUuid();
-        Long seatId = dto.getSeatId();
+	private final SeatService seatService;
 
-        Seat seat = seatService.getSeat(seatId);
-        bookingService.booking(userUuid, seat);
-    }
+	private final BookingService bookingService;
+
+	public void booking(String authorization, RequestBookingDto dto) {
+		if (authorization == null || !authorization.contains("Bearer ")) {
+			return;
+		}
+		Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
+		String userUuid = token.getUserUuid();
+		Long seatId = dto.getSeatId();
+
+		Seat seat = seatService.getSeat(seatId);
+		bookingService.booking(userUuid, seat);
+	}
+
 }

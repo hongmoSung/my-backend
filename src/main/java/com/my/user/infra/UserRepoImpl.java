@@ -12,23 +12,22 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class UserRepoImpl implements UserRepo {
 
-    private final UserJpaRepo userJpaRepo;
+	private final UserJpaRepo userJpaRepo;
 
-    @Transactional
-    @Override
-    public User getOrCreateUserByEmail(String email) {
+	@Transactional
+	@Override
+	public User getOrCreateUserByEmail(String email) {
 
-        UserEntity userEntity = userJpaRepo.findByEmail(email)
-            .orElseGet(() -> new UserEntity(email));
+		UserEntity userEntity = userJpaRepo.findByEmail(email).orElseGet(() -> new UserEntity(email));
 
-        if (userEntity.isPayEmpty()) {
-            PayEntity payEntity = new PayEntity(userEntity);
-            userEntity.addPay(payEntity);
-        }
+		if (userEntity.isPayEmpty()) {
+			PayEntity payEntity = new PayEntity(userEntity);
+			userEntity.addPay(payEntity);
+		}
 
-        userJpaRepo.save(userEntity);
+		userJpaRepo.save(userEntity);
 
-        return new User(userEntity.getUserId().toString(), userEntity.getEmail());
-    }
+		return new User(userEntity.getUserId().toString(), userEntity.getEmail());
+	}
 
 }

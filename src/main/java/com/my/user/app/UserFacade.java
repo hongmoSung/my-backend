@@ -13,16 +13,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserFacade {
 
-    private final UserService userService;
-    private final TokenService tokenService;
+	private final UserService userService;
 
-    public ResTokenDto getTokenString(String email) throws JsonProcessingException {
+	private final TokenService tokenService;
 
-        User user = userService.getUser(email);
-        Token token = tokenService.getToken(user);
+	public ResTokenDto getTokenString(String email) throws JsonProcessingException {
 
-        tokenService.saveToken(token);
+		User user = userService.getUser(email);
+		Token token = tokenService.getToken(user);
 
-        return new ResTokenDto(token.getTokenString());
-    }
+		tokenService.saveToken(token);
+
+		return new ResTokenDto(token.getTokenString());
+	}
+
 }

@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReqChargeDto {
 
-    private final BigInteger chargeAmount = new BigInteger("0");
+	private final BigInteger chargeAmount = new BigInteger("0");
+
 }

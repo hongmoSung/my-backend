@@ -10,11 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ResTokenDto {
 
-    private String token = "";
-    private String type = "Bearer";
+	private String token = "";
 
-    @Builder
-    public ResTokenDto(String token) {
-        this.token = token;
-    }
+	private String type = "Bearer";
+
+	@Builder
+	public ResTokenDto(String token) {
+		this.token = token;
+	}
+
 }

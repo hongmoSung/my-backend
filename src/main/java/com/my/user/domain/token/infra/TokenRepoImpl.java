@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TokenRepoImpl implements TokenRepo {
 
-    private final TokenJpaRepo tokenJpaRepo;
+	private final TokenJpaRepo tokenJpaRepo;
 
-    @Override
-    public void saveToken(TokenEntity tokenEntity) {
-        tokenJpaRepo.save(tokenEntity);
-    }
+	@Override
+	public void saveToken(TokenEntity tokenEntity) {
+		tokenJpaRepo.save(tokenEntity);
+	}
+
 }
