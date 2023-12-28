@@ -22,61 +22,40 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 class SeatControllerTest extends RestDocTestSupport {
 
-    private final SeatService seatService = mock(SeatService.class);
+	private final SeatService seatService = mock(SeatService.class);
 
-    @Override
-    protected Object initController() {
-        return new SeatController(seatService);
-    }
+	@Override
+	protected Object initController() {
+		return new SeatController(seatService);
+	}
 
-    @Test
-    void getAvailableDates() throws Exception {
-        List<ResRemainSeats> response = List.of(
-            ResRemainSeats.builder()
-                .date(LocalDate.of(2021, 1, 1))
-                .count(1L)
-                .build(),
-            ResRemainSeats.builder()
-                .date(LocalDate.of(2021, 1, 2))
-                .count(1L)
-                .build()
-        );
+	@Test
+	void getAvailableDates() throws Exception {
+		List<ResRemainSeats> response = List.of(
+				ResRemainSeats.builder().date(LocalDate.of(2021, 1, 1)).count(1L).build(),
+				ResRemainSeats.builder().date(LocalDate.of(2021, 1, 2)).count(1L).build());
 
-        given(seatService.getRemainSeats(1L)).willReturn(response);
+		given(seatService.getRemainSeats(1L)).willReturn(response);
 
-        mockMvc.perform(
-                get("/api/v1/concerts/{concertId}/remain-seats", 1L)
-            )
-            .andExpect(status().isOk())
-            .andDo(document("available-dates",
-                pathParameters(
-                    parameterWithName("concertId").description("콘서트 ID")),
-                responseFields(
-                    fieldWithPath(".[].date").type(JsonFieldType.STRING).description("날짜"),
-                    fieldWithPath(".[].count").type(JsonFieldType.NUMBER).description("잔여 좌석 수")
-                )
-            ));
-    }
+		mockMvc.perform(get("/api/v1/concerts/{concertId}/remain-seats", 1L))
+			.andExpect(status().isOk())
+			.andDo(document("available-dates", pathParameters(parameterWithName("concertId").description("콘서트 ID")),
+					responseFields(fieldWithPath(".[].date").type(JsonFieldType.STRING).description("날짜"),
+							fieldWithPath(".[].count").type(JsonFieldType.NUMBER).description("잔여 좌석 수"))));
+	}
 
-    @Test
-    void getRemainSeats() throws Exception {
-        List<ResEnableSeat> res = List.of(
-            new ResEnableSeat(1L, 1),
-            new ResEnableSeat(2L, 2)
-        );
-        given(seatService.getRemainSeatsByDate(1L, "2020-01-03")).willReturn(res);
+	@Test
+	void getRemainSeats() throws Exception {
+		List<ResEnableSeat> res = List.of(new ResEnableSeat(1L, 1), new ResEnableSeat(2L, 2));
+		given(seatService.getRemainSeatsByDate(1L, "2020-01-03")).willReturn(res);
 
-        mockMvc.perform(
-                get("/api/v1/concerts/{concertId}/remain-seats/{date}", 1L, "2020-01-03")
-            )
-            .andExpect(status().isOk())
-            .andDo(document("get-remain-seats", pathParameters(
-                    parameterWithName("concertId").description("콘서트 아이디"),
-                    parameterWithName("date").description("날짜")),
-                responseFields(
-                    fieldWithPath(".[].id").type(JsonFieldType.NUMBER).description("좌석 id"),
-                    fieldWithPath(".[].no").type(JsonFieldType.NUMBER).description("좌석 번호")
-                )
-            ));
-    }
+		mockMvc.perform(get("/api/v1/concerts/{concertId}/remain-seats/{date}", 1L, "2020-01-03"))
+			.andExpect(status().isOk())
+			.andDo(document("get-remain-seats",
+					pathParameters(parameterWithName("concertId").description("콘서트 아이디"),
+							parameterWithName("date").description("날짜")),
+					responseFields(fieldWithPath(".[].id").type(JsonFieldType.NUMBER).description("좌석 id"),
+							fieldWithPath(".[].no").type(JsonFieldType.NUMBER).description("좌석 번호"))));
+	}
+
 }

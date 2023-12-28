@@ -9,5 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ReqTokenDto {
 
-    private String email;
+	private String email;
+
 }

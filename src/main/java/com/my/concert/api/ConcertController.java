@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConcertController {
 
-    private final ConcertFacade concertFacade;
+	private final ConcertFacade concertFacade;
 
-    @PostMapping("/concerts")
-    public ResponseEntity<Void> createConcert(@RequestBody ReqCreateConcertDto dto) {
-        concertFacade.createThingsNeededForTheConcert(dto);
-        return ResponseEntity.created(null).build();
-    }
+	@PostMapping("/concerts")
+	public ResponseEntity<Void> createConcert(@RequestBody ReqCreateConcertDto dto) {
+		concertFacade.createThingsNeededForTheConcert(dto);
+		return ResponseEntity.created(null).build();
+	}
+
 }

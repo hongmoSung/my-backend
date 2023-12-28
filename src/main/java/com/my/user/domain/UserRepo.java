@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepo {
 
-    User getOrCreateUserByEmail(String email);
+	User getOrCreateUserByEmail(String email);
+
 }

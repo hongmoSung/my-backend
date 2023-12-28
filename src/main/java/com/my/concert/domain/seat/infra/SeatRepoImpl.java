@@ -21,53 +21,35 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SeatRepoImpl implements SeatRepo {
 
-    private final JPAQueryFactory queryFactory;
-    private final SeatJpaRepo seatJpaRepo;
+	private final JPAQueryFactory queryFactory;
 
-    @Override
-    public List<ResRemainSeats> getEnableReserveDays(Long concertId) {
-        return queryFactory.select(
-                Projections.constructor(ResRemainSeats.class,
-                    seatEntity.date,
-                    count(seatEntity.id)
-                )
-            )
-            .from(seatEntity)
-            .where(
-                seatEntity.concert.id.eq(concertId)
-                    .and(seatEntity.isReserved.isFalse())
-            )
-            .groupBy(seatEntity.date)
-            .fetch();
-    }
+	private final SeatJpaRepo seatJpaRepo;
 
-    @Override
-    public List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String dateString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(dateString, formatter);
-        return queryFactory.select(
-                Projections.constructor(ResEnableSeat.class,
-                    seatEntity.id,
-                    seatEntity.no
-                )
-            )
-            .from(seatEntity)
-            .where(
-                seatEntity.concert.id.eq(concertId)
-                    .and(seatEntity.date.eq(date))
-                    .and(seatEntity.isReserved.isFalse())
-            )
-            .fetch();
-    }
+	@Override
+	public List<ResRemainSeats> getEnableReserveDays(Long concertId) {
+		return queryFactory.select(Projections.constructor(ResRemainSeats.class, seatEntity.date, count(seatEntity.id)))
+			.from(seatEntity)
+			.where(seatEntity.concert.id.eq(concertId).and(seatEntity.isReserved.isFalse()))
+			.groupBy(seatEntity.date)
+			.fetch();
+	}
 
-    @Override
-    public Seat getSeat(Long seatId) {
-        SeatEntity seatEntity = seatJpaRepo.findById(seatId)
-                .orElseThrow(() -> new RuntimeException("시트를 찾을 수 없습니다."));
-        return Seat.builder()
-                .id(seatEntity.getId())
-                .no(seatEntity.getNo())
-                .date(seatEntity.getDate())
-                .build();
-    }
+	@Override
+	public List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String dateString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate date = LocalDate.parse(dateString, formatter);
+		return queryFactory.select(Projections.constructor(ResEnableSeat.class, seatEntity.id, seatEntity.no))
+			.from(seatEntity)
+			.where(seatEntity.concert.id.eq(concertId)
+				.and(seatEntity.date.eq(date))
+				.and(seatEntity.isReserved.isFalse()))
+			.fetch();
+	}
+
+	@Override
+	public Seat getSeat(Long seatId) {
+		SeatEntity seatEntity = seatJpaRepo.findById(seatId).orElseThrow(() -> new RuntimeException("시트를 찾을 수 없습니다."));
+		return Seat.builder().id(seatEntity.getId()).no(seatEntity.getNo()).date(seatEntity.getDate()).build();
+	}
+
 }

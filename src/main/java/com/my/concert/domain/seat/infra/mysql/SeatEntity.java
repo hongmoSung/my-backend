@@ -20,37 +20,35 @@ import lombok.NoArgsConstructor;
 @Entity(name = "seat")
 public class SeatEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private int no;
+	private int no;
 
-    private LocalDate date;
+	private LocalDate date;
 
-    private boolean isReserved = false;
+	private boolean isReserved = false;
 
-    private int price = 5000;
+	private int price = 5000;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "concertId",
-            foreignKey = @ForeignKey(name = "FK_Seat_Concert_Id")
-    )
-    private ConcertEntity concert;
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "concertId", foreignKey = @ForeignKey(name = "FK_Seat_Concert_Id"))
+	private ConcertEntity concert;
 
-    @Builder
-    public SeatEntity(ConcertEntity concert, int no, LocalDate date) {
-        this.concert = concert;
-        this.no = no;
-        this.date = date;
-    }
+	@Builder
+	public SeatEntity(ConcertEntity concert, int no, LocalDate date) {
+		this.concert = concert;
+		this.no = no;
+		this.date = date;
+	}
 
-    public void addConcert(ConcertEntity concert) {
-        this.concert = concert;
-    }
+	public void addConcert(ConcertEntity concert) {
+		this.concert = concert;
+	}
 
-    public void reserveSeat() {
-        this.isReserved = true;
-    }
+	public void reserveSeat() {
+		this.isReserved = true;
+	}
+
 }

@@ -19,37 +19,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class ConcertRestDocTest extends RestDocTestSupport {
 
-    private final ConcertFacade concertFacade = mock(ConcertFacade.class);
+	private final ConcertFacade concertFacade = mock(ConcertFacade.class);
 
-    @Override
-    protected Object initController() {
-        return new ConcertController(concertFacade);
-    }
+	@Override
+	protected Object initController() {
+		return new ConcertController(concertFacade);
+	}
 
-    @Test
-    public void createConcert() throws Exception {
-        LocalDate start = LocalDate.of(2023, 1, 1);
-        LocalDate end = start.plusDays(10);
-        ReqCreateConcertDto request = new ReqCreateConcertDto();
-        request.setName("test");
-        request.setStartDate(start);
-        request.setEndDate(end);
+	@Test
+	public void createConcert() throws Exception {
+		LocalDate start = LocalDate.of(2023, 1, 1);
+		LocalDate end = start.plusDays(10);
+		ReqCreateConcertDto request = new ReqCreateConcertDto();
+		request.setName("test");
+		request.setStartDate(start);
+		request.setEndDate(end);
 
-        mockMvc.perform(
-                post("/api/v1/concerts")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(request))
-            )
-            .andDo(print())
-            .andExpect(status().isCreated())
-            .andDo(
-                document("create-concert",
-                    requestFields(
-                        fieldWithPath("name").type(JsonFieldType.STRING).description("콘서트 이름"),
-                        fieldWithPath("startDate").type(JsonFieldType.STRING).description("콘서트 시작일"),
-                        fieldWithPath("endDate").type(JsonFieldType.STRING).description("콘서트 종료일")
-                    )
-                )
-            );
-    }
+		mockMvc
+			.perform(post("/api/v1/concerts").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(request)))
+			.andDo(print())
+			.andExpect(status().isCreated())
+			.andDo(document("create-concert",
+					requestFields(fieldWithPath("name").type(JsonFieldType.STRING).description("콘서트 이름"),
+							fieldWithPath("startDate").type(JsonFieldType.STRING).description("콘서트 시작일"),
+							fieldWithPath("endDate").type(JsonFieldType.STRING).description("콘서트 종료일"))));
+	}
+
 }

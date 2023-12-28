@@ -17,35 +17,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class BookingControllerTest extends RestDocTestSupport {
 
-    private final BookingFacade bookingFacade = mock(BookingFacade.class);
+	private final BookingFacade bookingFacade = mock(BookingFacade.class);
 
-    @Override
-    protected Object initController() {
-        return new BookingController(bookingFacade);
-    }
+	@Override
+	protected Object initController() {
+		return new BookingController(bookingFacade);
+	}
 
-    @Test
-    void booking() throws Exception {
+	@Test
+	void booking() throws Exception {
 
-        String authorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyVXVpZCI6Ij";
+		String authorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyVXVpZCI6Ij";
 
-        RequestBookingDto requestBody = new RequestBookingDto();
+		RequestBookingDto requestBody = new RequestBookingDto();
 
-        mockMvc.perform(
-                        post("/api/v1/booking")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(requestBody))
-                                .header("Authorization", authorization)
-                )
-                .andDo(print())
-                .andExpect(status().isCreated())
-                .andDo(
-                        document("booking",
-                                requestFields(
-                                        fieldWithPath("seatId").type(JsonFieldType.NUMBER).description("좌석 id")
-                                )
-                        )
-                );
+		mockMvc
+			.perform(post("/api/v1/booking").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(requestBody))
+				.header("Authorization", authorization))
+			.andDo(print())
+			.andExpect(status().isCreated())
+			.andDo(document("booking",
+					requestFields(fieldWithPath("seatId").type(JsonFieldType.NUMBER).description("좌석 id"))));
 
-    }
+	}
+
 }

@@ -17,41 +17,44 @@ import java.util.UUID;
 @Repository
 public class BookingRepoImpl implements BookingRepo {
 
-    private final BookingJpaRepo bookingJpaRepo;
-    private final UserJpaRepo userJpaRepo;
-    private final SeatJpaRepo seatJpaRepo;
+	private final BookingJpaRepo bookingJpaRepo;
 
-    @Override
-    public void booking(Booking booking) {
+	private final UserJpaRepo userJpaRepo;
 
-        SeatEntity seatEntity = seatJpaRepo.findById(booking.getSeatId())
-                .orElseThrow(() -> new RuntimeException("시트를 찾을 수 없습니다."));
-        seatEntity.reserveSeat();
+	private final SeatJpaRepo seatJpaRepo;
 
-        UserEntity userEntity = userJpaRepo.findById(UUID.fromString(booking.getUserUuid()))
-                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
+	@Override
+	public void booking(Booking booking) {
 
-        BookingEntity bookingEntity = BookingEntity.builder()
-                .seat(seatEntity)
-                .user(userEntity)
-                .date(seatEntity.getDate())
-                .build();
+		SeatEntity seatEntity = seatJpaRepo.findById(booking.getSeatId())
+			.orElseThrow(() -> new RuntimeException("시트를 찾을 수 없습니다."));
+		seatEntity.reserveSeat();
 
-        bookingJpaRepo.save(bookingEntity);
-    }
+		UserEntity userEntity = userJpaRepo.findById(UUID.fromString(booking.getUserUuid()))
+			.orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다."));
 
-    @Override
-    public Booking getBooking(Long bookingId) {
-        BookingEntity bookingEntity = bookingJpaRepo.findById(bookingId)
-                .orElseThrow(() -> new RuntimeException("예약 정보를 찾을 수 없습니다."));
+		BookingEntity bookingEntity = BookingEntity.builder()
+			.seat(seatEntity)
+			.user(userEntity)
+			.date(seatEntity.getDate())
+			.build();
 
-        Booking booking = Booking.builder()
-                .id(bookingEntity.getId())
-                .date(bookingEntity.getDate())
-                .userUuid(bookingEntity.getUser().getUserId().toString())
-                .seatId(bookingEntity.getSeat().getId())
-                .price(bookingEntity.getSeat().getPrice())
-                .build();
-        return booking;
-    }
+		bookingJpaRepo.save(bookingEntity);
+	}
+
+	@Override
+	public Booking getBooking(Long bookingId) {
+		BookingEntity bookingEntity = bookingJpaRepo.findById(bookingId)
+			.orElseThrow(() -> new RuntimeException("예약 정보를 찾을 수 없습니다."));
+
+		Booking booking = Booking.builder()
+			.id(bookingEntity.getId())
+			.date(bookingEntity.getDate())
+			.userUuid(bookingEntity.getUser().getUserId().toString())
+			.seatId(bookingEntity.getSeat().getId())
+			.price(bookingEntity.getSeat().getPrice())
+			.build();
+		return booking;
+	}
+
 }

@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private final UserFacade userFacade;
+	private final UserFacade userFacade;
 
-    @PostMapping("/tokens")
-    public ResponseEntity<ResTokenDto> getToken(@RequestBody ReqTokenDto reqTokenDto) throws JsonProcessingException {
-        return ResponseEntity.ok(userFacade.getTokenString(reqTokenDto.getEmail()));
-    }
+	@PostMapping("/tokens")
+	public ResponseEntity<ResTokenDto> getToken(@RequestBody ReqTokenDto reqTokenDto) throws JsonProcessingException {
+		return ResponseEntity.ok(userFacade.getTokenString(reqTokenDto.getEmail()));
+	}
+
 }

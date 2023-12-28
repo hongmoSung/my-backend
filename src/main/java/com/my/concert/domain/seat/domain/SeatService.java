@@ -14,33 +14,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class SeatService {
 
-    private final SeatRepo seatRepo;
+	private final SeatRepo seatRepo;
 
-    public List<Seat> createSeatsByConcert(Concert concert) {
+	public List<Seat> createSeatsByConcert(Concert concert) {
 
-        int days = concert.getConcertPeriodDays();
-        LocalDate startDate = concert.getStartDate();
+		int days = concert.getConcertPeriodDays();
+		LocalDate startDate = concert.getStartDate();
 
-        List<Seat> seats = new ArrayList<>();
-        IntStream.range(0, days).forEach(day -> {
-            LocalDate seatDate = startDate.plusDays(day);
-            IntStream.rangeClosed(1, 50).forEach(no -> {
-                Seat seat = new Seat(no, seatDate);
-                seats.add(seat);
-            });
-        });
-        return seats;
-    }
+		List<Seat> seats = new ArrayList<>();
+		IntStream.range(0, days).forEach((day) -> {
+			LocalDate seatDate = startDate.plusDays(day);
+			IntStream.rangeClosed(1, 50).forEach((no) -> {
+				Seat seat = new Seat(no, seatDate);
+				seats.add(seat);
+			});
+		});
+		return seats;
+	}
 
-    public List<ResRemainSeats> getRemainSeats(Long concertId) {
-        return seatRepo.getEnableReserveDays(concertId);
-    }
+	public List<ResRemainSeats> getRemainSeats(Long concertId) {
+		return seatRepo.getEnableReserveDays(concertId);
+	}
 
-    public List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String date) {
-        return seatRepo.getRemainSeatsByDate(concertId, date);
-    }
+	public List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String date) {
+		return seatRepo.getRemainSeatsByDate(concertId, date);
+	}
 
-    public Seat getSeat(Long seatId) {
-        return seatRepo.getSeat(seatId);
-    }
+	public Seat getSeat(Long seatId) {
+		return seatRepo.getSeat(seatId);
+	}
+
 }

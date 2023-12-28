@@ -9,9 +9,10 @@ import java.util.List;
 @Repository
 public interface SeatRepo {
 
-    List<ResRemainSeats> getEnableReserveDays(Long concertId);
+	List<ResRemainSeats> getEnableReserveDays(Long concertId);
 
-    List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String date);
+	List<ResEnableSeat> getRemainSeatsByDate(Long concertId, String date);
 
-    Seat getSeat(Long seatId);
+	Seat getSeat(Long seatId);
+
 }

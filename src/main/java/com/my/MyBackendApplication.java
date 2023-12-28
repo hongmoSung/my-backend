@@ -17,4 +17,5 @@ public class MyBackendApplication {
 	JPAQueryFactory queryFactory(EntityManager em) {
 		return new JPAQueryFactory(em);
 	}
+
 }

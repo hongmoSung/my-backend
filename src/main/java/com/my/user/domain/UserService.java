@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final UserRepo userRepo;
+	private final UserRepo userRepo;
 
-    public User getUser(String email) {
-        return userRepo.getOrCreateUserByEmail(email);
-    }
+	public User getUser(String email) {
+		return userRepo.getOrCreateUserByEmail(email);
+	}
 
 }

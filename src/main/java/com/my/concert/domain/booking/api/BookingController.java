@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BookingController {
 
-    private final BookingFacade bookingFacade;
+	private final BookingFacade bookingFacade;
 
-    @PostMapping("/booking")
-    public ResponseEntity<Void> booking(HttpServletRequest request, @RequestBody RequestBookingDto dto) {
-        String authorization = request.getHeader("Authorization");
-        bookingFacade.booking(authorization, dto);
-        return ResponseEntity.created(null).build();
-    }
+	@PostMapping("/booking")
+	public ResponseEntity<Void> booking(HttpServletRequest request, @RequestBody RequestBookingDto dto) {
+		String authorization = request.getHeader("Authorization");
+		bookingFacade.booking(authorization, dto);
+		return ResponseEntity.created(null).build();
+	}
+
 }

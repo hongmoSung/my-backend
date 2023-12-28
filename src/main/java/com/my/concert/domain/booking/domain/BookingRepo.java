@@ -4,7 +4,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookingRepo {
-    void booking(Booking booking);
 
-    Booking getBooking(Long bookingId);
+	void booking(Booking booking);
+
+	Booking getBooking(Long bookingId);
+
 }

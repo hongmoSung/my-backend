@@ -16,17 +16,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 @ExtendWith(RestDocumentationExtension.class)
 public abstract class RestDocTestSupport {
 
-    protected MockMvc mockMvc;
-    protected ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+	protected MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp(RestDocumentationContextProvider provider) {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(initController())
-                .addFilters(new CharacterEncodingFilter("UTF-8", true))  // 필터 추가
-                .alwaysDo(print())
-                .apply(documentationConfiguration(provider))
-                .build();
-    }
+	protected ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
-    protected abstract Object initController();
+	@BeforeEach
+	void setUp(RestDocumentationContextProvider provider) {
+		this.mockMvc = MockMvcBuilders.standaloneSetup(initController())
+			.addFilters(new CharacterEncodingFilter("UTF-8", true)) // 필터 추가
+			.alwaysDo(print())
+			.apply(documentationConfiguration(provider))
+			.build();
+	}
+
+	protected abstract Object initController();
+
 }

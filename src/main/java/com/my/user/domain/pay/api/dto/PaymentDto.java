@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 public class PaymentDto {
 
-    private Long bookingId;
+	private Long bookingId;
 
-    private BigInteger money = BigInteger.ZERO;
+	private BigInteger money = BigInteger.ZERO;
 
 }

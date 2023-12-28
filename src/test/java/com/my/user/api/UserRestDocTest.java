@@ -18,40 +18,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class UserRestDocTest extends RestDocTestSupport {
 
-    private final UserFacade userFacade = mock(UserFacade.class);
+	private final UserFacade userFacade = mock(UserFacade.class);
 
-    @Override
-    protected Object initController() {
-        return new UserController(userFacade);
-    }
+	@Override
+	protected Object initController() {
+		return new UserController(userFacade);
+	}
 
-    @Test
-    void getToken() throws Exception {
+	@Test
+	void getToken() throws Exception {
 
-        ReqTokenDto requestBody = new ReqTokenDto();
-        requestBody.setEmail("a@a.com");
+		ReqTokenDto requestBody = new ReqTokenDto();
+		requestBody.setEmail("a@a.com");
 
-        ResTokenDto resTokenDto = new ResTokenDto("adasdasdsad");
+		ResTokenDto resTokenDto = new ResTokenDto("adasdasdsad");
 
-        given(userFacade.getTokenString(requestBody.getEmail())).willReturn(resTokenDto);
+		given(userFacade.getTokenString(requestBody.getEmail())).willReturn(resTokenDto);
 
-        mockMvc.perform(
-                post("/api/v1/users/tokens")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(requestBody))
-            )
-            .andDo(print())
-            .andExpect(status().isOk())
-            .andDo(
-                document("get-user-token",
-                    requestFields(
-                        fieldWithPath("email").type(JsonFieldType.STRING).description("유저 이메일")
-                    ),
-                    responseFields(
-                        fieldWithPath("token").type(JsonFieldType.STRING).description("token 값"),
-                        fieldWithPath("type").type(JsonFieldType.STRING).description("토큰 타입")
-                    )
-                )
-            );
-    }
+		mockMvc
+			.perform(post("/api/v1/users/tokens").contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(requestBody)))
+			.andDo(print())
+			.andExpect(status().isOk())
+			.andDo(document("get-user-token",
+					requestFields(fieldWithPath("email").type(JsonFieldType.STRING).description("유저 이메일")),
+					responseFields(fieldWithPath("token").type(JsonFieldType.STRING).description("token 값"),
+							fieldWithPath("type").type(JsonFieldType.STRING).description("토큰 타입"))));
+	}
+
 }

@@ -16,39 +16,39 @@ import java.math.BigInteger;
 @Service
 public class PayFacade {
 
-    private final TokenService tokenService;
-    private final PayService payService;
-    private final BookingService bookingService;
+	private final TokenService tokenService;
 
-    public ResPayDto getBalance(String authorization) {
-        if (authorization == null || !authorization.contains("Bearer ")) {
-            return new ResPayDto();
-        }
+	private final PayService payService;
 
-        Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
-        BigInteger balance = payService.getBalanceByUserUuid(token.getUserUuid());
-        return ResPayDto.builder()
-                .email(token.getEmail())
-                .money(balance)
-                .build();
-    }
+	private final BookingService bookingService;
 
-    public void balanceRecharge(String authorization, ReqChargeDto reqChargeDto) {
-        if (authorization == null || !authorization.contains("Bearer ")) {
-            return;
-        }
+	public ResPayDto getBalance(String authorization) {
+		if (authorization == null || !authorization.contains("Bearer ")) {
+			return new ResPayDto();
+		}
 
-        Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
-        payService.rechargeMoney(token.getUserUuid(), reqChargeDto.getChargeAmount());
-    }
+		Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
+		BigInteger balance = payService.getBalanceByUserUuid(token.getUserUuid());
+		return ResPayDto.builder().email(token.getEmail()).money(balance).build();
+	}
 
-    public void pay(String authorization, Long bookingId) {
-        if (authorization == null || !authorization.contains("Bearer ")) {
-            return;
-        }
+	public void balanceRecharge(String authorization, ReqChargeDto reqChargeDto) {
+		if (authorization == null || !authorization.contains("Bearer ")) {
+			return;
+		}
 
-        Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
-        Booking booking = bookingService.getBooking(bookingId);
-        payService.pay(token.getUserUuid(), booking);
-    }
+		Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
+		payService.rechargeMoney(token.getUserUuid(), reqChargeDto.getChargeAmount());
+	}
+
+	public void pay(String authorization, Long bookingId) {
+		if (authorization == null || !authorization.contains("Bearer ")) {
+			return;
+		}
+
+		Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
+		Booking booking = bookingService.getBooking(bookingId);
+		payService.pay(token.getUserUuid(), booking);
+	}
+
 }

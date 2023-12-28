@@ -8,12 +8,14 @@ import lombok.Getter;
 @Getter
 public class ResRemainSeats {
 
-    private String date;
-    private Long count;
+	private String date;
 
-    @Builder
-    public ResRemainSeats(LocalDate date, Long count) {
-        this.date = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        this.count = count;
-    }
+	private Long count;
+
+	@Builder
+	public ResRemainSeats(LocalDate date, Long count) {
+		this.date = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		this.count = count;
+	}
+
 }

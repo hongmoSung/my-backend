@@ -11,12 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ResPayDto {
 
-    private String email = "";
-    private BigInteger money = BigInteger.ZERO;
+	private String email = "";
 
-    @Builder
-    public ResPayDto(String email, BigInteger money) {
-        this.email = email;
-        this.money = money;
-    }
+	private BigInteger money = BigInteger.ZERO;
+
+	@Builder
+	public ResPayDto(String email, BigInteger money) {
+		this.email = email;
+		this.money = money;
+	}
+
 }

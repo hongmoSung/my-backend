@@ -7,13 +7,14 @@ import lombok.Getter;
 @Getter
 public class ResConcertDto {
 
-    private String name;
+	private String name;
 
-    private List<String> availableDates;
+	private List<String> availableDates;
 
-    @Builder
-    public ResConcertDto(String name, List<String> availableDates) {
-        this.name = name;
-        this.availableDates = availableDates;
-    }
+	@Builder
+	public ResConcertDto(String name, List<String> availableDates) {
+		this.name = name;
+		this.availableDates = availableDates;
+	}
+
 }
