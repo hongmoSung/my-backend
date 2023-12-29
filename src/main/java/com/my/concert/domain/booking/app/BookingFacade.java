@@ -4,8 +4,8 @@ import com.my.concert.domain.booking.api.dto.RequestBookingDto;
 import com.my.concert.domain.booking.domain.BookingService;
 import com.my.concert.domain.seat.domain.Seat;
 import com.my.concert.domain.seat.domain.SeatService;
-import com.my.user.domain.token.domain.Token;
-import com.my.user.domain.token.domain.TokenService;
+import com.my.token.domain.Token;
+import com.my.token.domain.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

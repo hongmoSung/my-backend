@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.my.user.api.dto.ResTokenDto;
 import com.my.user.domain.User;
 import com.my.user.domain.UserService;
-import com.my.user.domain.token.domain.Token;
-import com.my.user.domain.token.domain.TokenService;
+import com.my.token.domain.Token;
+import com.my.token.domain.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class UserFacade {
@@ -17,6 +19,7 @@ public class UserFacade {
 
 	private final TokenService tokenService;
 
+	@Transactional
 	public ResTokenDto getTokenString(String email) throws JsonProcessingException {
 
 		User user = userService.getUser(email);

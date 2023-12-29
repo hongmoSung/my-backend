@@ -1,11 +1,9 @@
-package com.my.user.domain.token.domain;
+package com.my.token.domain;
 
-import com.my.user.domain.token.infra.mysql.TokenEntity;
+import com.my.token.infra.mysql.TokenEntity;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.UUID;
 
 @Getter
@@ -13,7 +11,7 @@ public class Token {
 
 	public enum Status {
 
-		VALID, STOP
+		WAIT, WORK, DONE;
 
 	}
 
@@ -21,11 +19,7 @@ public class Token {
 
 	private String email;
 
-	private int number;
-
-	private Long expireAt;
-
-	private Status status = Status.VALID;
+	private Status status = Status.WAIT;
 
 	private String tokenString = "";
 
@@ -38,7 +32,6 @@ public class Token {
 	public Token(String userUuid, String email, String tokenString) {
 		this(userUuid, email);
 		this.tokenString = tokenString;
-		this.expireAt = LocalDateTime.now().plusMinutes(5).toEpochSecond(ZoneOffset.UTC);
 	}
 
 	public void addTokenString(String tokenString) {
@@ -50,8 +43,15 @@ public class Token {
 			.userUuid(UUID.fromString(this.userUuid))
 			.tokenString(this.tokenString)
 			.status(this.status)
-			.expireAt(this.expireAt)
 			.build();
+	}
+
+	public void changeToWork() {
+		this.status = Status.WORK;
+	}
+
+	public void changeDone() {
+		this.status = Status.DONE;
 	}
 
 }

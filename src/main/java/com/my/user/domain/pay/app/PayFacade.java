@@ -2,12 +2,14 @@ package com.my.user.domain.pay.app;
 
 import com.my.concert.domain.booking.domain.Booking;
 import com.my.concert.domain.booking.domain.BookingService;
+import com.my.token.domain.PayEndEvent;
 import com.my.user.domain.pay.api.dto.ReqChargeDto;
 import com.my.user.domain.pay.api.dto.ResPayDto;
 import com.my.user.domain.pay.domain.PayService;
-import com.my.user.domain.token.domain.Token;
-import com.my.user.domain.token.domain.TokenService;
+import com.my.token.domain.Token;
+import com.my.token.domain.TokenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -21,6 +23,8 @@ public class PayFacade {
 	private final PayService payService;
 
 	private final BookingService bookingService;
+
+	private final ApplicationEventPublisher eventPublisher;
 
 	public ResPayDto getBalance(String authorization) {
 		if (authorization == null || !authorization.contains("Bearer ")) {
@@ -49,6 +53,9 @@ public class PayFacade {
 		Token token = tokenService.decodeToken(authorization.replace("Bearer ", ""));
 		Booking booking = bookingService.getBooking(bookingId);
 		payService.pay(token.getUserUuid(), booking);
+
+		tokenService.changeDone(token);
+		eventPublisher.publishEvent(new PayEndEvent());
 	}
 
 }
