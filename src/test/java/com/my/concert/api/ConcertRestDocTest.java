@@ -27,7 +27,7 @@ class ConcertRestDocTest extends RestDocTestSupport {
 	}
 
 	@Test
-	public void createConcert() throws Exception {
+	void createConcert() throws Exception {
 		LocalDate start = LocalDate.of(2023, 1, 1);
 		LocalDate end = start.plusDays(10);
 		ReqCreateConcertDto request = new ReqCreateConcertDto();
