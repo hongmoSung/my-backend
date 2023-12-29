@@ -12,5 +12,8 @@
     <property name="excludes" value="io.spring.javaformat.checkstyle.check.SpringJavadocCheck"/>
     <property name="excludes" value="io.spring.javaformat.checkstyle.check.SpringImportOrderCheck"/>
     <property name="excludes" value="io.spring.javaformat.checkstyle.check.SpringHeaderCheck"/>
+
+    <property name="excludes" value="io.spring.javaformat.checkstyle.check.SpringTestFileNameCheck"/>
+    <property name="excludes" value="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
   </module>
 </module>

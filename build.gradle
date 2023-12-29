@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.40")
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
@@ -28,7 +37,6 @@ repositories {
 
 dependencies {
     checkstyle "io.spring.javaformat:spring-javaformat-checkstyle:0.0.40"
-    implementation "io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.40"
     // spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -77,9 +85,10 @@ tasks.withType(JavaCompile) {
 }
 
 // java source set 에 querydsl QClass 위치 추가
-sourceSets {
-    main.java.srcDirs += [ generated ]
-}
+// todo 왜 있는지 확인
+//sourceSets {
+//    main.java.srcDirs += [ generated ]
+//}
 
 // gradle clean 시에 QClass 디렉토리 삭제
 clean {
@@ -93,8 +102,6 @@ test {
 checkstyle {
     toolVersion = "10.12.4"
 }
-
-checkstyleMain.source = fileTree('src/main/java')
 
 asciidoctor {
     inputs.dir snippetsDir
