@@ -1,4 +1,4 @@
-package com.my.user.domain.token.domain;
+package com.my.token.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,12 +24,13 @@ public class TokenService {
 	private final TokenRepo tokenRepo;
 
 	public Token getToken(User user) throws JsonProcessingException {
-
 		Token token = Token.builder().userUuid(user.getUserId()).email(user.getEmail()).build();
-
 		String tokenString = getTokenString(token);
 		token.addTokenString(tokenString);
 
+		if (tokenRepo.getWorkingTokenCount() < 10) {
+			token.changeToWork();
+		}
 		return token;
 	}
 
@@ -50,12 +51,18 @@ public class TokenService {
 		String email = claims.get("email", String.class);
 		Integer number = claims.get("number", Integer.class);
 		Long expireAt = claims.get("expireAt", Long.class);
-		return new Token(userUuid, email);
+		return new Token(userUuid, email, tokenString);
 	}
 
 	@Transactional
 	public void saveToken(Token token) {
 		tokenRepo.saveToken(token.toEntity());
+	}
+
+	@Transactional
+	public void changeDone(Token token) {
+		token.changeDone();
+		tokenRepo.changeToDone(token);
 	}
 
 }

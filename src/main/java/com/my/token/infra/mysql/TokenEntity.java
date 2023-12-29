@@ -1,16 +1,12 @@
-package com.my.user.domain.token.infra.mysql;
+package com.my.token.infra.mysql;
 
-import com.my.user.domain.token.domain.Token;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.my.token.domain.Token;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,16 +22,28 @@ public class TokenEntity {
 	private String tokenString;
 
 	@Enumerated(EnumType.STRING)
-	private Token.Status status;
+	private Token.Status status = Token.Status.WAIT;
 
-	private Long expireAt;
+	private LocalDateTime expireAt;
+
+	private LocalDateTime createAt;
 
 	@Builder
 	public TokenEntity(UUID userUuid, String tokenString, Token.Status status, Long expireAt) {
 		this.userUuid = userUuid;
 		this.tokenString = tokenString;
 		this.status = status;
-		this.expireAt = expireAt;
+		this.expireAt = LocalDateTime.now();
+		this.createAt = LocalDateTime.now();
+	}
+
+	public void done() {
+		this.status = Token.Status.DONE;
+	}
+
+	public void changToWork() {
+		this.status = Token.Status.WORK;
+		this.expireAt = LocalDateTime.now().plusMinutes(30);
 	}
 
 }
