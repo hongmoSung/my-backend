@@ -70,6 +70,10 @@ dependencies {
     // RestDocs
     asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+
+    // log
+    implementation 'ca.pjer:logback-awslogs-appender:1.6.0'
+    implementation 'org.codehaus.janino:janino:3.1.7'
 }
 
 ext { // 전역 변수
