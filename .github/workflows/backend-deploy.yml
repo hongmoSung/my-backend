@@ -70,5 +70,5 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: my-ecs-service
-          cluster: dev_my_cluster
+          cluster: my_backend_cluster
           wait-for-service-stability: false
