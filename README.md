@@ -2,7 +2,7 @@
 
 ### Api Docs
 
-* [Api 명세서 링크](http://my-lb-1257057151.ap-northeast-2.elb.amazonaws.com:8080/docs/index.html)
+* [Api 명세서 링크](http://my-lb-120959135.ap-northeast-2.elb.amazonaws.com:8080/docs/index.html)
 
 ### ERD
 

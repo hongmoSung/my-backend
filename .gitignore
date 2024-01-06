@@ -41,3 +41,6 @@ out/
 
 ### Qclass
 src/main/generated
+
+### properties
+src/main/resources/properties
