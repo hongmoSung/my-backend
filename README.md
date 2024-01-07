@@ -34,7 +34,13 @@ git submodule foreach git pull
 java -jar ./build/libs/my-backend-0.0.1-SNAPSHOT.jar
 ```
 
+### Format
+```shell
+./gradlew format
+```
+
 ### ref
 
 - [spring-restdocs](https://docs.spring.io/spring-restdocs/docs/current/reference/htmlsingle/#introduction)
 - [jwt.io](https://jwt.io/)
+- [howto](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html)

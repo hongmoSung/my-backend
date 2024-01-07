@@ -2,8 +2,8 @@
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%green(%d{yyyy-MM-dd'T'HH:mm:ss}) %magenta([%thread]) %highlight(%level) %cyan(%logger{15})
-                %msg%n
+            <pattern>
+                %green(%d{yyyy-MM-dd'T'HH:mm:ss}) %magenta([%thread]) %highlight(%level) %cyan(%logger{15}) %msg%n
             </pattern>
         </encoder>
     </appender>
@@ -14,8 +14,8 @@
                     <level>info</level>
                 </filter>
                 <layout>
-                    <pattern>%green(%d{yyyy-MM-dd'T'HH:mm:ss}) %magenta([%thread]) %highlight(%level) %cyan(%logger{15})
-                        %msg%n
+                    <pattern>
+                        %green(%d{yyyy-MM-dd'T'HH:mm:ss}) %magenta([%thread]) %highlight(%level) %cyan(%logger{15}) %msg%n
                     </pattern>
                 </layout>
                 <if condition='property("spring.profiles.active").contains("dev")'>
