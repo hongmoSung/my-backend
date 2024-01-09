@@ -1,0 +1,23 @@
+POST http://{{host}}/orders
+Content-Type: application/json
+
+{
+  "memberId": 1,
+  "products": [
+    {
+      "productId": 1,
+      "price": 1000,
+      "quantity": 4
+    },
+    {
+      "productId": 2,
+      "price": 2000,
+      "quantity": 1
+    },
+    {
+      "productId": 3,
+      "price": 3000,
+      "quantity": 2
+    }
+  ]
+}

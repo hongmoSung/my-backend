@@ -1,0 +1,12 @@
+#https://www.jetbrains.com/help/idea/exploring-http-syntax.html#http-client-env-json
+
+GET http://{{host}}/points/1
+
+###
+PUT http://{{host}}/points
+Content-Type: application/json
+
+{
+  "memberId": 1,
+  "point": 15000
+}
