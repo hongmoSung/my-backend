@@ -6,7 +6,6 @@ import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

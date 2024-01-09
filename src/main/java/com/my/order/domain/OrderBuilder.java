@@ -4,7 +4,10 @@ import com.my.order.api.OrderRequest;
 
 import java.util.List;
 
-public class OrderBuilder {
+public final class OrderBuilder {
+
+	private OrderBuilder() {
+	}
 
 	public static Order createOrder(OrderRequest request) {
 		List<OrderLine> orderLines = request.getProducts()

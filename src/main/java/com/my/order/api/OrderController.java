@@ -1,7 +1,6 @@
 package com.my.order.api;
 
 import com.my.order.application.OrderFacade;
-import com.my.order.domain.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

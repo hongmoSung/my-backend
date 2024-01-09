@@ -1,11 +1,8 @@
 package com.my.member.domain;
 
-import com.my.member.api.PointRechargeRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigInteger;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor

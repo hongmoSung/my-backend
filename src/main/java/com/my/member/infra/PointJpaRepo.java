@@ -13,8 +13,8 @@ public interface PointJpaRepo extends JpaRepository<Member, Long> {
 	@Query("""
 			select
 			new com.my.member.domain.Point(m.point.point)
-			  from Member m
-			 where m.memberId = :memberId
+			from Member m
+			where m.memberId = :memberId
 			""")
 	Optional<Point> findPoint(@Param("memberId") Long memberId);
 

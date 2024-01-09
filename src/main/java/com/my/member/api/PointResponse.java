@@ -2,7 +2,6 @@ package com.my.member.api;
 
 import com.my.member.domain.Point;
 import lombok.Builder;
-import lombok.Getter;
 
 import java.math.BigInteger;
 
