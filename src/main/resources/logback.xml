@@ -11,7 +11,7 @@
         <then>
             <appender name="ASYNC_AWS_LOGS" class="ca.pjer.logback.AwsLogsAppender">
                 <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                    <level>info</level>
+                    <level>ERROR</level>
                 </filter>
                 <layout>
                     <pattern>
@@ -23,7 +23,7 @@
                         <logGroupName>dev/my-backend</logGroupName>
                     </then>
                 </if>
-                <logStreamUuidPrefix>ecs/my-backend-contatiner/</logStreamUuidPrefix>
+                <logStreamUuidPrefix>ERROR-</logStreamUuidPrefix>
                 <logRegion>ap-northeast-2</logRegion>
                 <maxBatchLogEvents>50</maxBatchLogEvents>
                 <maxFlushTimeMillis>30000</maxFlushTimeMillis>
