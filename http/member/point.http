@@ -10,3 +10,6 @@ Content-Type: application/json
   "memberId": 1,
   "point": 15000
 }
+
+###
+GET http://{{host}}/points/test
